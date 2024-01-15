@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './view/test/test.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { Test2Component } from './view/test2/test2.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    TestComponent,
+    Test2Component
  
   ],
   exports: [
