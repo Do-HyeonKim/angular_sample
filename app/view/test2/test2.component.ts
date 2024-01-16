@@ -28,8 +28,9 @@ export class Test2Component {
     let finalList:any[] = []
     finalList = this.interpolateVoltages()
 
-    let minValue = this.initList[0].voltage 
-    let maxValue = this.initList[this.initList.length - 1].voltage
+    //수정
+    let minValue = finalList[0].voltage 
+    let maxValue = finalList[finalList.length - 1].voltage
 
 console.log(minValue);
 console.log(maxValue);
@@ -133,13 +134,19 @@ console.log(data)
           lineStyle: { color: '#fff' }
         },
         viewControl: {
-          projection: 'orthographic'
+          projection: 'orthographic',
+          alpha: 40, // 40도 정도로 상하로 회전
+          beta: -40 // -40도 정도로 좌우로 회전
         }
       },
       series: [
         {
           type: 'scatter3D',
-          data: data
+          symbol:'rect',
+          data: data,
+          label:{
+            fontSize:20
+          }
         }
       ]
     }
@@ -153,7 +160,10 @@ console.log(data)
   
     knownPoints.forEach(point => {
       const distance = Math.sqrt(Math.pow(x - point.x, 2) + Math.pow(y - point.y, 2) + Math.pow(z - point.z, 2));
-      const weight = 1 / (distance || 1);
+      // const weight = 1 / (distance || 1);
+      //추가
+      const weight = 1 / (Math.pow(distance, 2) + 1); 
+
       weights += weight;
       weightedVoltageSum += weight * point.voltage;
     });
@@ -172,14 +182,14 @@ console.log(data)
   const minZvalue = this.initList[this.initList.length -1].z
 
   // x, y, z 범위를 기준으로 for 루프 실행 (maxValue - minXvalue) / 20)
-  for (let x = minXvalue; x <= maxValue; x += 0.01) { 
-for (let y = minYvalue; y <= maxYValue; y += 0.001) {
-for (let z = minZvalue; z <= maxZalue; z += 0.001) {
-const voltage = this.calculateWeightedAverage(x, y, z, this.initList);
-interpolatedData.push({ x, y, z, voltage });
-}
-}
-}
+  for (let x = minXvalue; x <= maxValue + Number.EPSILON; x += 0.005) { 
+    for (let y = minYvalue; y <= maxYValue + Number.EPSILON; y += 0.001) {
+      for (let z = minZvalue; z <= maxZalue + Number.EPSILON; z += 0.002) {
+        const voltage = this.calculateWeightedAverage(x, y, z, this.initList);
+        interpolatedData.push({ x, y, z, voltage });
+      }
+    }
+  }
 
 interpolatedData.sort((a, b) => {
   if (a.x !== b.x) {
