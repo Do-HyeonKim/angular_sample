@@ -1,0 +1,37 @@
+
+<svg class="shape">
+    <line x1="10" x2="400" y1="30" y2="300" stroke="dodgerblue"></line>
+    <!-- x1은 시작점 x2는 끝점. y1도 시작점 y2도 끝점. -->
+  </svg>
+
+  <svg width="1000" height="100">
+
+    <!-- 첫 번째 테이블 -->
+    <rect x="50" y="30" width="100" height="40" fill="#ccc"/>
+    <text x="100" y="55" text-anchor="middle">테이블명1</text>
+
+    <!-- 두 번째 테이블 -->
+    <rect x="200" y="30" width="100" height="40" fill="#ccc"/>
+    <text x="250" y="55" text-anchor="middle">테이블명2</text>
+
+    <!-- 세 번째 테이블 -->
+    <rect x="350" y="30" width="100" height="40" fill="#ccc"/>
+    <text x="400" y="55" text-anchor="middle">테이블명3</text>
+
+    <!-- 선 연결 -->
+    <line x1="150" y1="50" x2="200" y2="50" stroke="#000"/>
+    <line x1="300" y1="50" x2="350" y2="50" stroke="#000"/>
+
+  </svg>
+
+
+  <svg #svgContainer width="1000" height="100" (click)="connectTables()">
+    <!-- 첫 번째 테이블 -->
+    <rect x="50" y="30" width="100" height="40" fill="#ccc" id="table1"/>
+    <text x="100" y="55" text-anchor="middle">테이블명1</text>
+
+    <!-- 두 번째 테이블 -->
+    <rect x="200" y="30" width="100" height="40" fill="#ccc" id="table2"/>
+    <text x="250" y="55" text-anchor="middle">테이블명2</text>
+  </svg>
+  
