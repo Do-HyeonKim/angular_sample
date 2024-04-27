@@ -14,4 +14,17 @@ export class TestService {
    }
 
 
+
+   getParseFile(data : any) {
+    return this.http.post<any[]>('/api/tc3/test', data);
+   }
+
+
+
+   
+   write(data : any) {
+    return this.http.post<any>('/api/tc3/write', data);
+   }
+
+
 }

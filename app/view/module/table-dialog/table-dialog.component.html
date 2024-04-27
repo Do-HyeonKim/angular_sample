@@ -1,0 +1,58 @@
+<div>
+    <input type="file" (change)="onFileSelected($event)">
+</div>
+<button mat-raised-button color="primary" (click)="addRow()">Add Row</button>
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Key1 Column -->
+    <ng-container matColumnDef="key1">
+       <th mat-header-cell *matHeaderCellDef> Key1 </th>
+       <td mat-cell *matCellDef="let element; let i = index">
+        <input *ngIf="isEditing(i, 'key1')" [(ngModel)]="element.key1" (blur)="stopEditing(i, 'key1')" />
+        <span *ngIf="!isEditing(i, 'key1')" (click)="startEditing(i, 'key1')">{{element.key1}}</span>
+      </td>
+    </ng-container>
+   
+    <!-- Key2 Column -->
+    <ng-container matColumnDef="key2">
+       <th mat-header-cell *matHeaderCellDef> Key2 </th>
+       <td mat-cell *matCellDef="let element; let i = index">
+        <input *ngIf="isEditing(i, 'key2')" [(ngModel)]="element.key2" (blur)="stopEditing(i, 'key2')" />
+        <span *ngIf="!isEditing(i, 'key2')" (click)="startEditing(i, 'key2')">{{element.key2}}</span>
+      </td>
+    </ng-container>
+   
+    <!-- Key3 Column -->
+    <ng-container matColumnDef="key3">
+       <th mat-header-cell *matHeaderCellDef> Key3 </th>
+       <td mat-cell *matCellDef="let element; let i = index">
+        <input *ngIf="isEditing(i, 'key3')" [(ngModel)]="element.key3" (blur)="stopEditing(i, 'key3')" />
+        <span *ngIf="!isEditing(i, 'key3')" (click)="startEditing(i, 'key3')">{{element.key3}}</span>
+      </td>
+    </ng-container>
+   
+    <!-- Key4 Column -->
+    <ng-container matColumnDef="key4">
+       <th mat-header-cell *matHeaderCellDef> Key4 </th>
+       <td mat-cell *matCellDef="let element; let i = index">
+        <input *ngIf="isEditing(i, 'key4')" [(ngModel)]="element.key4" (blur)="stopEditing(i, 'key4')" />
+        <span *ngIf="!isEditing(i, 'key4')" (click)="startEditing(i, 'key4')">{{element.key4}}</span>
+      </td>
+    </ng-container>
+   
+    <!-- Key5 Column -->
+    <ng-container matColumnDef="key5">
+       <th mat-header-cell *matHeaderCellDef> Key5 </th>
+       <td mat-cell *matCellDef="let element; let i = index">
+        <input *ngIf="isEditing(i, 'key5')" [(ngModel)]="element.key5" (blur)="stopEditing(i, 'key5')" />
+        <span *ngIf="!isEditing(i, 'key5')" (click)="startEditing(i, 'key5')">{{element.key5}}</span>
+      </td>
+    </ng-container>
+   
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   </table>
+
+
+   <button mat-raised-button color="primary" (click)="onSubmit()">완료</button>
