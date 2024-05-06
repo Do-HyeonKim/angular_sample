@@ -16,6 +16,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ContourComponent } from './view/contour/contour.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     Test4Component,
     UploadComponent,
     TableDialogComponent,
+    ContourComponent,
  
   ],
   exports: [

@@ -6,6 +6,7 @@ import { Test3Component } from './view/test3/test3.component';
 import { Test4Component } from './view/test4/test4.component';
 import { UploadComponent } from './view/module/upload/upload.component';
 import { TableDialogComponent } from './view/module/table-dialog/table-dialog.component';
+import { ContourComponent } from './view/contour/contour.component';
 
 const routes: Routes = [ 
   // { path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'test3', component: Test3Component },
   {path:'test4', component : Test4Component},
 {path: 'upload' , component : UploadComponent},
-{path: 'table' , component : TableDialogComponent}];
+{path: 'table' , component : TableDialogComponent},
+{path: 'contour' , component : ContourComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
