@@ -30,8 +30,12 @@ export class TestService {
 
       
    readData(data : any) {
-    return this.http.post<any>('/api/tc4/readData', data);
+    return this.http.post<any>('/api/tc5/readData', data);
    }
+
+
+         
+
 
 
 

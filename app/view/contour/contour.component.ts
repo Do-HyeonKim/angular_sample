@@ -17,10 +17,10 @@ export class ContourComponent {
   constructor(
     private test : TestService
   ){
-
+    
+    let data:any[]=[]
     this.test.readData({}).subscribe(result=>{
-      console.log(result);
-      this.drawContourPlot(result['xq'], result['yq'], result['zq'])
+      this.drawContourPlot(result['xq'], result['yq'], result['zq'],result['temp'])
       
     })
 
@@ -29,11 +29,13 @@ export class ContourComponent {
   }
 
 
-  drawContourPlot(xq: number[], yq: number[], zq: number[]) {
+  drawContourPlot(xq: number[], yq: number[], zq: number[],temp: number[]) {
       // xq와 yq를 카테고리로 변환
-      const xAxisData = xq.map(value => value.toString());
-      const yAxisData = yq.map(value => value.toString());
-  
+      const xAxisData = xq.map(value => value);
+      const yAxisData = yq.map(value => value);
+      const zAxisData = zq.map(value => value);
+
+
       // xq, yq의 최솟값과 최댓값 계산
       const minX = Math.min(...xq);
       const maxX = Math.max(...xq);
@@ -44,7 +46,7 @@ export class ContourComponent {
       const intervalX = (maxX - minX) / xAxisData.length;
       const intervalY = (maxY - minY) / yAxisData.length;
     
-      console.log( zq.map((value, index) => [xAxisData[index], yAxisData[index], value]));
+      console.log( temp.map((value, index) => [xAxisData[index], yAxisData[index], zAxisData[index], value]));
       
       // 컨투어 플롯 옵션 설정
       this.chartOptions = {
@@ -93,10 +95,7 @@ export class ContourComponent {
               {
                   name: 'Gaussian',
                   type: 'heatmap',
-                  data: zq.map((value, index) => {
-                    const yValue = yAxisData[index] !== undefined ? yAxisData[index] : yAxisData[0];
-                    return [xAxisData[index], yValue, value];
-                }),
+                  data : temp.map((value, index) => [xAxisData[index], yAxisData[index], zAxisData[index], value]),
                   emphasis: {
                       itemStyle: {
                           borderColor: '#333',
